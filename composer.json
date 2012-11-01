@@ -1,0 +1,24 @@
+{
+    "name": "tear/moip-bundle",
+    "type": "symfony-bundle",
+    "description": "Integration of the MoIP with Symfony2.1 PHP",
+    "keywords": ["moip", "bundle", "symfony2"],
+    "license":"MIT",
+    "homepage": "",
+    "authors": [
+        {
+            "name": "Leonn Leite",
+            "email": "leonnleite@gmail.com"
+        }
+    ],
+    "require":{
+        "php": ">=5.3.3"
+    },
+    
+    "autoload": {
+        "psr-0": {
+            "Tear\\MoipBundle":""
+        }
+    },
+    "target-dir":"Tear/MoipBundle"
+}
