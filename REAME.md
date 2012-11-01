@@ -24,6 +24,27 @@ This can be done in two different ways:
 
 -------------------------------------
 
+
+
+Configuration:
+----------
+
+``` yaml
+// app/config/config.yml
+
+moip:
+    credential:
+        token: XXXXXXXXX
+        key: YYYYYYYYYYY 
+    environment: test //test or production
+```
+
+
+
+-------------------------------------
+
+
+
 Methods
 ----------
 Methods List
