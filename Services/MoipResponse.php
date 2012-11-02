@@ -19,4 +19,14 @@ class MoipResponse
             }
             return null;
     }
+    
+    function __call($name,$arguments){
+        if(substr($name, 0,3) == 'get'){
+            $variabel = lcfirst(substr($name, 3));
+            return $this->response[$variabel];
+        }else{
+            throw new Exception( "Method ({$name}) does not exist", 0 );
+        }
+        return null;
+    }
 }
