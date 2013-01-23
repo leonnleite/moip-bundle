@@ -107,6 +107,12 @@ class Moip
      */
     public $answer;
     /**
+     * Server's details answer
+     *
+     * @var MoipResponse
+     */
+    public $details;
+    /**
      * The transaction's value
      *
      * @var float
@@ -789,4 +795,61 @@ class Moip
 		return $answer;
     }
 
+    public function getDetails($token,$client=null){
+        
+        if ($client == null)
+            $client = new MoipClient();
+        
+        
+        $url = $this->environment['base_url'] . '/ws/alpha/ConsultarInstrucao/' . $token;
+        $credential = $this->credential['token'] . ':' . $this->credential['key'];
+        return $this->details = $client->curlGet($credential,$url, $this->errors);
+    }
+    
+    
+    /**
+     * Method getAnswer()
+     *
+     * Gets the server's answer
+     * @param boolean $return_xml_as_string Return the answer XMl string
+     * @return MoipResponse|string
+     * @access public
+     */
+    public function getDetailsAnswer($return_xml_as_string = false) {
+        if ($this->details->response == true) {
+            if ($return_xml_as_string) {
+                return $this->details->xml;
+            }
+            $xml = new \SimpleXmlElement($this->details->xml);
+            if(isset($xml->RespostaConsultar->Autorizacao->Pagamento)){
+                $arrayPagamento = Array();
+                foreach(($xml->RespostaConsultar->Autorizacao->Pagamento) as $pagamento){
+                    
+                    $indice = (int) preg_replace('/\D/', '', $pagamento->CodigoMoIP);
+                    $arrayPagamento[$indice] = $pagamento;
+                }
+                krsort($arrayPagamento);
+            }else{
+                $arrayPagamento = false;
+            }
+            $pagador = false;
+            if(isset($xml->RespostaConsultar->Autorizacao->Pagador)){
+                $pagador = $xml->RespostaConsultar->Autorizacao->Pagador;
+            }
+            $enderecoCobranca = false;
+            if(isset($xml->RespostaConsultar->Autorizacao->EnderecoCobranca)){
+                $enderecoCobranca = $xml->RespostaConsultar->Autorizacao->EnderecoCobranca;
+            }
+            return new MoipResponse(array(
+                        'response' => $xml->RespostaConsultar->Status == 'Sucesso' ? true : false,
+    			'error' => $xml->RespostaConsultar->Status == 'Falha' ? $this->convert_encoding((string)$xml->Resposta->Erro) : false,
+    			'id' => (string) $xml->RespostaConsultar->ID,
+                        'pagador' => $pagador,
+                        'enderecoCobranca' => $enderecoCobranca,
+                        'pagamento' => $arrayPagamento,
+			));
+        } else {
+            return $this->details->error;
+        }
+    }
 }

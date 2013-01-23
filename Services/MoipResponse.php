@@ -21,7 +21,7 @@ class MoipResponse
     }
     
     function __call($name,$arguments){
-        if(substr($name, 0,3) == 'get'){
+        if(substr($name, 0,3) == 'get' && $name != 'getToken'){
             $variabel = lcfirst(substr($name, 3));
             return $this->response[$variabel];
         }else{
