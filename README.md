@@ -4,7 +4,7 @@
 Instalação
 ----------
 
-> composer require leonnleite/moip-bundle
+> __composer require leonnleite/moip-bundle__
 
 # Adicione ao seu appKernel
  ```php
