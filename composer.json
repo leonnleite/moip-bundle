@@ -22,7 +22,6 @@
             "LeonnLeite\\MoipBundle\\": ""
         }
     },
-    "target-dir":"LeonnLeite/MoipBundle",
     "require-dev": {
         "phpunit/phpunit": "^5.6"
     }
