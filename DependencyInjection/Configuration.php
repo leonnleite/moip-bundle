@@ -1,6 +1,6 @@
 <?php
 
-namespace Tear\MoipBundle\DependencyInjection;
+namespace LeonnLeite\MoipBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -13,28 +13,32 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('moip');
         $rootNode   ->children()
                         ->arrayNode('credential')
+                            ->isRequired()
                             ->children()
-                                ->scalarNode('key')  
-                                    ->isRequired()
+                                ->scalarNode('key')
+                                    ->defaultValue('')
                                 ->end()
-                                ->scalarNode('token')  
+                                ->scalarNode('token')
                                         ->isRequired()
                                 ->end()
                             ->end()
                         ->end()
-                        ->scalarNode('environment')
-                            ->isRequired()
+                        ->scalarNode('production')
+                            ->defaultFalse()
+                        ->end()
+                        ->scalarNode('authentication_mode')
+                            ->defaultValue('Basic')
                             ->validate()
-                                ->ifNotInArray(array('test','production'))
-                                ->thenInvalid('Invalid environment! accepted variables:[test/production]')
+                                ->ifNotInArray(['Basic', 'OAuth'])
+                                ->thenInvalid('Authentication mode is only Basic or OAuth')
                             ->end()
                         ->end()
                     ->end() ;
-                
+
         return $treeBuilder;
     }
 
     public function getAliasName() {
-        
+
     }
 }

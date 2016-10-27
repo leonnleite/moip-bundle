@@ -5,17 +5,23 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="payment.moip.class">Tear\MoipBundle\Services\Moip</parameter>
+        <parameter key="moip.class">Moip\Moip</parameter>
+        <parameter key="moip.authentication.oauth.class">Moip\MoipOAuth</parameter>
+        <parameter key="moip.authentication.basic.class">Moip\MoipBasicAuth</parameter>
     </parameters>
 
+
     <services>
-        <service id="payment.moip" class="%payment.moip.class%">
-            <call method="setCredential">
-                <argument>%payment.moip.credential%</argument> 
-            </call>
-            <call method="setEnvironment">
-                <argument>%payment.moip.environment%</argument>
-            </call>
+        <service id="moip" class="%moip.class%">
+            <argument type="service" id="moip.authenticator"/>
+            <argument>%moip.environment%</argument>
+        </service>
+        <service id="moip.authenticator.basic" class="%moip.authentication.basic.class%">
+            <argument>%moip.credential.token%</argument>
+            <argument>%moip.credential.key%</argument>
+        </service>
+        <service id="moip.authenticator.oauth" class="%moip.authentication.oauth.class%">
+            <argument>%moip.credential.token%</argument>
         </service>
     </services>
 </container>

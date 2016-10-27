@@ -1,6 +1,6 @@
 <?php
 
-namespace Tear\MoipBundle;
+namespace LeonnLeite\MoipBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

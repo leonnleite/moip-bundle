@@ -1,10 +1,9 @@
 {
-    "name": "tear/moip-bundle",
+    "name": "leonnleite/moip-bundle",
     "type": "symfony-bundle",
-    "description": "Integration of the MoIP with Symfony2.1 PHP",
-    "keywords": ["moip", "bundle", "symfony2"],
+    "description": "Integration of the MoIP with Symfony PHP",
+    "keywords": ["moip", "bundle", "symfony"],
     "license":"MIT",
-    "homepage": "",
     "authors": [
         {
             "name": "Leonn Leite",
@@ -12,13 +11,19 @@
         }
     ],
     "require":{
-        "php": ">=5.3.3"
+        "moip/moip-sdk-php": "^1.1",
+        "symfony/dependency-injection": "^2.7|^3.1",
+        "symfony/http-kernel": "^2.7|^3.1",
+        "symfony/config": "^2.7|^3.1"
     },
     
     "autoload": {
-        "psr-0": {
-            "Tear\\MoipBundle":""
+        "psr-4": {
+            "LeonnLeite\\MoipBundle\\": ""
         }
     },
-    "target-dir":"Tear/MoipBundle"
+    "target-dir":"LeonnLeite/MoipBundle",
+    "require-dev": {
+        "phpunit/phpunit": "^5.6"
+    }
 }
