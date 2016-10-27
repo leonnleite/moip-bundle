@@ -4,7 +4,7 @@
 Instalação
 ----------
 
-> __composer require leonnleite/moip-bundle__
+> __composer require tear/moip-bundle__
 
 # Adicione ao seu appKernel
  ```php
@@ -57,8 +57,9 @@ moip:
 ```
 
 ## Utilização
-O serviço __moip__ fica disponivel para ser utilizado
-tal como: __$this->moid('moip')__ ou injetando o __@moip__
+
+### Use as service `moip`
+
 
 ```php
 //...
