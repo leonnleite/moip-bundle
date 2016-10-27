@@ -1,5 +1,5 @@
 # MoipBundle
-[![Build Status](https://travis-ci.org/leonnleite/moip-bundle.svg?branch=master)]
+![Build Status](https://travis-ci.org/leonnleite/moip-bundle.svg?branch=master)
 
 Instalação
 ----------
