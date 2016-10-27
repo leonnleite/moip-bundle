@@ -1,6 +1,7 @@
 <?php
 
 namespace LeonnLeite\MoipBundle\Tests\DependencyInjection;
+
 use LeonnLeite\MoipBundle\MoipBundle;
 use Moip\Moip;
 use Symfony\Component\DependencyInjection\Compiler\ResolveDefinitionTemplatesPass;
@@ -10,11 +11,10 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 /**
  * User: leonnleite
  * Date: 26/10/16
- * Time: 23:25
+ * Time: 23:25.
  */
 class MoipBundleTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @dataProvider getBasicConfig
      */
@@ -29,7 +29,6 @@ class MoipBundleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($moip->getEndpoint(), Moip::ENDPOINT_SANDBOX);
     }
 
-
     public function getBasicConfig()
     {
         return [
@@ -38,11 +37,11 @@ class MoipBundleTest extends \PHPUnit_Framework_TestCase
                     'moip' => [
                         'credential' => [
                             'key' => 'foo',
-                            'token' => 'bar'
-                        ]
-                    ]
-                ]
-            ]
+                            'token' => 'bar',
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
     /**
@@ -59,7 +58,6 @@ class MoipBundleTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Moip\MoipOAuth', $moipAuth);
     }
 
-
     public function getOAuthConfig()
     {
         return [
@@ -67,15 +65,14 @@ class MoipBundleTest extends \PHPUnit_Framework_TestCase
                 [
                     'moip' => [
                         'credential' => [
-                            'token' => 'bar'
+                            'token' => 'bar',
                         ],
-                        'authentication_mode' => 'OAuth'
-                    ]
-                ]
-            ]
+                        'authentication_mode' => 'OAuth',
+                    ],
+                ],
+            ],
         ];
     }
-
 
     /**
      * @dataProvider getProdConfig
@@ -85,12 +82,11 @@ class MoipBundleTest extends \PHPUnit_Framework_TestCase
         $container = $this->getContainerForConfig($config);
 
         /**
-         * @var Moip $moip
+         * @var Moip
          */
         $moip = $container->get('moip');
         $this->assertEquals($moip->getEndpoint(), Moip::ENDPOINT_PRODUCTION);
     }
-
 
     public function getProdConfig()
     {
@@ -100,15 +96,14 @@ class MoipBundleTest extends \PHPUnit_Framework_TestCase
                     'moip' => [
                         'credential' => [
                             'key' => 'foo',
-                            'token' => 'bar'
+                            'token' => 'bar',
                         ],
-                        'production' => true
-                    ]
-                ]
-            ]
+                        'production' => true,
+                    ],
+                ],
+            ],
         ];
     }
-
 
     private function getContainerForConfig(array $configs, KernelInterface $kernel = null)
     {
@@ -132,6 +127,7 @@ class MoipBundleTest extends \PHPUnit_Framework_TestCase
         ));
         $container->getCompilerPassConfig()->setRemovingPasses(array());
         $container->compile();
+
         return $container;
     }
 }

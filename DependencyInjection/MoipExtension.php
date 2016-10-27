@@ -2,7 +2,6 @@
 
 namespace LeonnLeite\MoipBundle\DependencyInjection;
 
-
 use Moip\Moip;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
@@ -19,7 +18,7 @@ class MoipExtension extends Extension
         $configuration = new Configuration();
 
         $config = $processor->processConfiguration($configuration, $config);
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         $loader->load('moip.xml');
 
@@ -33,11 +32,9 @@ class MoipExtension extends Extension
             $authenticationClass = 'moip.authenticator.oauth';
         }
 
-
         $container->setAlias('moip.authenticator', $authenticationClass);
         $container->setParameter('moip.credential.key', $config['credential']['key']);
         $container->setParameter('moip.credential.token', $config['credential']['token']);
         $container->setParameter('moip.environment', $enviroment);
-
     }
 }

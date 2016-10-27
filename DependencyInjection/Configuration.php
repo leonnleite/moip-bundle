@@ -11,7 +11,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('moip');
-        $rootNode   ->children()
+        $rootNode->children()
                         ->arrayNode('credential')
                             ->isRequired()
                             ->children()
@@ -33,12 +33,12 @@ class Configuration implements ConfigurationInterface
                                 ->thenInvalid('Authentication mode is only Basic or OAuth')
                             ->end()
                         ->end()
-                    ->end() ;
+                    ->end();
 
         return $treeBuilder;
     }
 
-    public function getAliasName() {
-
+    public function getAliasName()
+    {
     }
 }
