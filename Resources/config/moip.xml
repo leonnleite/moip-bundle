@@ -6,8 +6,8 @@
 
     <parameters>
         <parameter key="moip.class">Moip\Moip</parameter>
-        <parameter key="moip.authentication.oauth.class">Moip\MoipOAuth</parameter>
-        <parameter key="moip.authentication.basic.class">Moip\MoipBasicAuth</parameter>
+        <parameter key="moip.authentication.oauth.class">Moip\Auth\OAuth</parameter>
+        <parameter key="moip.authentication.basic.class">Moip\Auth\BasicAuth</parameter>
     </parameters>
 
 
