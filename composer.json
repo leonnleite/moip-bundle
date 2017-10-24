@@ -11,7 +11,7 @@
         }
     ],
     "require":{
-        "moip/moip-sdk-php": "^1.1",
+        "moip/moip-sdk-php": "^2.1",
         "symfony/dependency-injection": "^2.7|^3.1",
         "symfony/http-kernel": "^2.7|^3.1",
         "symfony/config": "^2.7|^3.1"

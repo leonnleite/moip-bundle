@@ -25,7 +25,7 @@ class MoipBundleTest extends \PHPUnit_Framework_TestCase
         $moip = $container->get('moip');
         $moipAuth = $container->get('moip.authenticator');
         $this->assertInstanceOf('\Moip\Moip', $moip);
-        $this->assertInstanceOf('\Moip\MoipBasicAuth', $moipAuth);
+        $this->assertInstanceOf('\Moip\Auth\BasicAuth', $moipAuth);
         $this->assertEquals($moip->getEndpoint(), Moip::ENDPOINT_SANDBOX);
     }
 
@@ -55,7 +55,7 @@ class MoipBundleTest extends \PHPUnit_Framework_TestCase
         $moipAuth = $container->get('moip.authenticator');
 
         $this->assertInstanceOf('\Moip\Moip', $moip);
-        $this->assertInstanceOf('\Moip\MoipOAuth', $moipAuth);
+        $this->assertInstanceOf('\Moip\Auth\OAuth', $moipAuth);
     }
 
     public function getOAuthConfig()
